@@ -1,0 +1,100 @@
+# [paper-reading] ASE: Large-Scale Reusable Adversarial Skill Embeddings for Physically Simulated Characters
+
+## Review
+
+- SuperTrack: train two different models: world model & policy model
+- Deepmimic: a standard RL problem
+
+## Abstract
+
+Considering the fact that human can learn new skills using past practice and experience, the author present a large-scale data-driven framework for learning versatile and reusable skill embeddings. The method combine **adversarial imitation learning** and **unsupervised reinforcement learning**. 
+
+## Overview
+
+In this work, the authors propose a method called ASE:
+
+<img src="/Users/gaohaitao/Library/Application Support/typora-user-images/image-20230810100544821.png" alt="image-20230810100544821" style="zoom:50%;" />
+
+Low-level policy $\pi(a|s,z)$, the input are: s and z and the output is a.
+
+The policy is trained to model a diverse repertoire of skills by using a reward function that combines an adversarial imitation objective, specified by a discriminator 𝐷, and an unsupervised skill discovery, specified by an encoder 𝑞.
+
+After pre-training, 𝜋 can be transferred to new tasks by using a task-specific high-level policy 𝜔 (z|s, g) to specify latent variables z for directing the low-level policy towards accomplishing a task-specific goal g.
+
+## Adversarial Skill Embedding
+
+the formulation of the pre-training is:
+
+$$max_\pi -D_{JS}(d^\pi(s,s')||d^M(s,s')+\beta I(s,s';z|\pi))$$
+
+- the first term: $D_{JS}(d^\pi(s,s'))$, which encourages the policy to produce realistic behaviours by matchinf the marginal state-transition distribution of dataset, Where $D_{JS}$ denotes the Jensen-Shannon divergence, $d^\pi(s,s')$ represents the marginal distribution of state transitions inducecd by $\pi$ , and $d^M(s,s')$ is the marginal state-transition distribution of the motion dataset $M$
+
+- The second term is the unsupervised skill discovery objective, which encourages the policy to develop a diverse and distinct set of skills by maximizing the mutual information between a skill z and the resulting behaviors, as represented by state transitions. 𝛽 is a manually specified coefficient. This objective encourages the low-level policy to be directable, such that different values of z leads to distinct and predictable behaviors. Computing these quantities exactly is generally intractable. In the following subsections, we will discuss techniques for constructing a practical approximation of this objective.
+
+ ### Imitation Objective
+
+- First they leverage a **variational approximation** in the form of a GAN-like framework. They introduced a **discriminator** $D(s,s')$, which is trained to classify if a given state transition $(s,s')$ is from the dataset or was produced by the agent.
+
+  $min_D -E_{D^M(s,s')}[log(D(s,s'))]-E_{d^\pi(s,s')}[log(1-D{s,s'})]$
+
+- The policy can be trained using a rewards specified by $r_t=-log(1-D(s_t,s_{t+1}))$. 
+
+### Skill Discovery Objective
+
+the objective aims to maximize the mutual information $I(s,s';z|\pi)$ between the state transition $(s,s')$ produced by a policy $\pi$ and the latent skill variable $z$.
+
+$I(s,s';z|\pi) = H(s,s'|\pi)-H(s,s'|z,\pi)$
+
+But, this equation is intractable in most domains. So change it to below equation:
+
+$I(s,s';z|\pi)=I(z;s,s'|\pi)=H(z)-H(z|s,s',\pi)$
+
+### Surrogate Objective
+
+Using above variational approximations, they can construct a surrogate objective:
+
+$arg max_\pi E_{p(z)}E_{p(\tau|\pi,z)}[\sum^{T-1}_{t=0}\gamma^t(-log(1-D(s_t,s_{t+1}))+\beta logq(z|s_t,s_{t+1})]$
+
+ ## Pre-training
+
+<img src="/Users/gaohaitao/Library/Application Support/typora-user-images/image-20230811155526681.png" alt="image-20230811155526681" style="zoom:50%;" />
+
+## High-Level Policy
+
+After pre-training, the low-level policy 𝜋 (a|s, z) can be applied to downstream tasks by training a task-specific high-level policy 𝜔 (z|s, g), which receives as input the state of the character s and a task-specific goal g, then outputs a latent z for directing the lowlevel policy.
+
+### High Level Action Space
+
+<img src="/Users/gaohaitao/Library/Application Support/typora-user-images/image-20230819152840563.png" alt="image-20230819152840563" style="zoom:50%;" />
+
+### Motion Prior
+
+Motion quality on downstream tasks can be improved by reusing the discriminator 𝐷 (s, s′) from pre-training as a portable motion prior when training the high-level policy. The reward for the high-level policy is then specified by a combination of a task-reward 𝑟𝐺 (s, a, s′, g) and a style-reward from the discriminator, in a similar manner:
+
+$r_t = W_Gr^G(s_t,a_t,s_{t+1},g)-W_Slog(1-D(s_t,s_{t+1}))$
+
+with 𝑤𝐺 and 𝑤𝑆 being manually specified coefficients. Note that the parameters of the discriminator are fixed after pre-training, and are not updated during task-training. Therefore, no motion data is needed when training on new tasks. Prior works have observed that training a policy against a fixed discriminator often leads to unnatural behaviors that exploit idiosyncrasies of the discriminator
+
+## Evaluation Method
+
+To evaluate the diversity of the behaviors produced by the model, the author compare motions produced by the low-level policy to motions from the original dataset:
+
+$m^* = arg min_{m^i \in M} min_{(s,s)\in m^i}||\bar{s_t}-\bar{s}||^2+||\bar{s_{t+1}}-\bar{s'}||^2$
+
+![image-20230819154642856](/Users/gaohaitao/Library/Application Support/typora-user-images/image-20230819154642856.png)
+
+![image-20230819154832186](/Users/gaohaitao/Library/Application Support/typora-user-images/image-20230819154832186.png)
+
+![image-20230819154902832](/Users/gaohaitao/Library/Application Support/typora-user-images/image-20230819154902832.png)
+
+
+
+## Limitations
+
+- 训练会出现崩溃（GAN）
+- 对大规模数据的动作学习还不够
+- 其他近似方法(diffusion model, predicting coding)
+- 高样本密集
+
+
+
