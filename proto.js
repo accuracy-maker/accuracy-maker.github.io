@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Load and render blog posts
-    fetch('blogs/posts.json')
+    fetch('./blogs/posts.json')  // Use a relative path
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const postFile = e.target.getAttribute('data-post');
-                    fetch(`blogs/${postFile}`)
+                    fetch(`./blogs/${postFile}`)  // Use a relative path
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -87,11 +87,17 @@ document.addEventListener('DOMContentLoaded', function() {
                             const html = marked.parse(markdown);
                             showBlogPostModal(html);
                         })
-                        .catch(error => console.error('Error loading blog post:', error));
+                        .catch(error => {
+                            console.error('Error loading blog post:', error);
+                            alert('Failed to load blog post. Please try again later.');
+                        });
                 });
             });
         })
-        .catch(error => console.error('Error loading posts.json:', error));
+        .catch(error => {
+            console.error('Error loading posts.json:', error);
+            document.getElementById('blog-posts').innerHTML = '<p>Failed to load blog posts. Please try again later.</p>';
+        });
 
     function showBlogPostModal(content) {
         const modal = document.createElement('div');
