@@ -1,5 +1,9 @@
 /* Academic Style CSS for Haitao Gao's Profile */
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Crimson Text', 'Times New Roman', serif;
     line-height: 1.6;
@@ -10,11 +14,13 @@ body {
     min-height: 100vh; /* Ensure minimum height is full viewport height */
     display: flex;
     flex-direction: column;
+    width: 100%; /* Add this line */
+    overflow-x: hidden; /* Add this line to prevent horizontal scrolling */
 }
 
 .container {
     width: 100%;
-    /* max-width: 1200px; */ /* Remove or comment out this line */
+    max-width: 1800px; /* Increased from 1140px */
     margin: 0 auto;
     padding: 40px 20px;
     background-color: #ffffff;
@@ -32,6 +38,12 @@ body {
 @media screen and (max-width: 768px) {
     .container {
         padding: 20px;
+    }
+    
+    .profile-image {
+        float: none;
+        display: block;
+        margin: 0 auto 20px;
     }
 }
 
@@ -59,8 +71,9 @@ h2 {
     height: 180px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 20px;
+    margin: 0 0 20px 20px;
     border: 3px solid #34495e;
+    float: right;
 }
 
 .section {
@@ -157,4 +170,24 @@ a:hover {
 
 .papers-list li em {
     font-style: italic;
+}
+
+/* Adjust the media query for very small screens */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 20px 10px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
 }
