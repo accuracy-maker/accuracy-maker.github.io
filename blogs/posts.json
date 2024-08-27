@@ -3,5 +3,10 @@
       "title": "My First Blog Post",
       "file": "post1.md",
       "excerpt": "This is a short excerpt from my first blog post..."
+    },
+    {
+        "title": "LaTeX Math Rendering Test",
+        "file": "post2.md",
+        "excerpt": "Demonstrating the ability to render LaTeX equations in our blog posts."
     }
 ]

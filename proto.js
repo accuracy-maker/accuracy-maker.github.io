@@ -104,6 +104,9 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.body.appendChild(modal);
 
+        // Render MathJax content
+        MathJax.typesetPromise([modal]).catch((err) => console.log('MathJax typesetting failed: ' + err.message));
+
         const closeBtn = modal.querySelector('.close');
         closeBtn.onclick = function() {
             document.body.removeChild(modal);
