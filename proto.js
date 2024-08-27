@@ -51,4 +51,68 @@ document.addEventListener('DOMContentLoaded', function() {
             link.style.textDecoration = 'none';
         });
     });
+
+    // Load and render blog posts
+    fetch('blogs/posts.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(posts => {
+            const blogContainer = document.getElementById('blog-posts');
+            posts.forEach(post => {
+                const postElement = document.createElement('article');
+                postElement.innerHTML = `
+                    <h3><a href="#" class="blog-post-link" data-post="${post.file}">${post.title}</a></h3>
+                    <p>${post.excerpt}</p>
+                `;
+                blogContainer.appendChild(postElement);
+            });
+
+            // Add click event listeners to blog post links
+            document.querySelectorAll('.blog-post-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const postFile = e.target.getAttribute('data-post');
+                    fetch(`blogs/${postFile}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+                            return response.text();
+                        })
+                        .then(markdown => {
+                            const html = marked.parse(markdown);
+                            showBlogPostModal(html);
+                        })
+                        .catch(error => console.error('Error loading blog post:', error));
+                });
+            });
+        })
+        .catch(error => console.error('Error loading posts.json:', error));
+
+    function showBlogPostModal(content) {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="blog-post-content">${content}</div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        const closeBtn = modal.querySelector('.close');
+        closeBtn.onclick = function() {
+            document.body.removeChild(modal);
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                document.body.removeChild(modal);
+            }
+        }
+    }
 });
