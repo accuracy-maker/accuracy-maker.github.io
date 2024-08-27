@@ -78,6 +78,10 @@ h2 {
 
 .section {
     margin-bottom: 40px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
@@ -244,4 +248,24 @@ a:hover {
 
 .blog-post-content {
     margin-top: 20px;
+}
+
+#contact {
+    background-color: #34495e;
+    color: #ecf0f1;
+}
+
+#contact h2 {
+    color: #ecf0f1;
+    border-bottom-color: #ecf0f1;
+}
+
+#contact .social-links a {
+    color: #ecf0f1;
+    margin-right: 15px;
+    font-size: 1.2em;
+}
+
+#contact .social-links a:hover {
+    color: #3498db;
 }
