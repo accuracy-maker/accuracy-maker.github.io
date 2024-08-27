@@ -1,0 +1,160 @@
+/* Academic Style CSS for Haitao Gao's Profile */
+
+body {
+    font-family: 'Crimson Text', 'Times New Roman', serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    min-height: 100vh; /* Ensure minimum height is full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 100%;
+    /* max-width: 1200px; */ /* Remove or comment out this line */
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+/* For larger screens, limit the content width for better readability */
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: 1140px; /* or any other max-width you prefer */
+    }
+}
+
+/* Adjust padding for smaller screens */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #34495e;
+    border-bottom: 2px solid #34495e;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+
+.profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid #34495e;
+}
+
+.section {
+    margin-bottom: 40px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+.section.fade-in {
+    opacity: 1;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #34495e;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.back-to-top.show {
+    opacity: 1;
+}
+
+.back-to-top:hover {
+    background-color: #2c3e50;
+}
+
+.papers-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.papers-list li {
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.papers-list li em {
+    font-style: italic;
+}
