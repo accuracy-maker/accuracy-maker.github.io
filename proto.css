@@ -211,7 +211,7 @@ a:hover {
 }
 
 /* Modal styles */
-.modal {
+/* .modal {
     display: block;
     position: fixed;
     z-index: 1;
@@ -268,7 +268,7 @@ a:hover {
 
 #contact .social-links a:hover {
     color: #3498db;
-}
+} */
 
 /* Code block styles */
 pre[class*="language-"] {
