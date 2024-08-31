@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const response = await fetch(`./blogs/${postFile}`);
                         const markdown = await response.text();
                         const html = marked.parse(markdown);
-                        await showBlogPost(html, postTitle);
+                        await showBlogPost(html, postTitle, postFile);
                     } catch (error) {
                         console.error('Error loading blog post:', error);
                         alert('Failed to load blog post. Please try again later.');
@@ -89,10 +89,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    async function showBlogPost(content, title) {
+    async function showBlogPost(content, title, fileName) {
         // Store the content in sessionStorage
         sessionStorage.setItem('blogPostContent', content);
         sessionStorage.setItem('blogPostTitle', title);
+        sessionStorage.setItem('blogPostFileName', fileName);
         
         // Navigate to the blog post page
         window.location.href = 'blogpost.html';

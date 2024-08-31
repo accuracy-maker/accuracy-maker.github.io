@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Post</title>
+    <title id="page-title">Blog Post</title>
     <link rel="stylesheet" href="proto.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
@@ -21,9 +21,14 @@
         document.addEventListener('DOMContentLoaded', function() {
             const content = sessionStorage.getItem('blogPostContent');
             const title = sessionStorage.getItem('blogPostTitle');
+            const fileName = sessionStorage.getItem('blogPostFileName');
             if (content && title) {
                 document.getElementById('blog-title').textContent = title;
                 document.getElementById('blog-content').innerHTML = content;
+                // Set the page title
+                document.getElementById('page-title').textContent = title + ' - Haitao Gao\'s Blog';
+                // Set the URL to include the blog post file name
+                history.pushState(null, '', `blogpost.html?post=${fileName}`);
                 // Apply Prism highlighting to code blocks
                 Prism.highlightAll();
                 // Render MathJax content
