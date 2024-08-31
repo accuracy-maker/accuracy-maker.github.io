@@ -1,8 +1,8 @@
 [
     {
-      "title": "My First Blog Post",
+      "title": "Stanford_CS231n Learning Notes",
       "file": "post1.md",
-      "excerpt": "This is a short excerpt from my first blog post..."
+      "excerpt": "This is my reflection on Stanford CS231n course"
     },
     {
         "title": "LaTeX Math Rendering Test",
