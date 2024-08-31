@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <link rel="stylesheet" href="proto.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 id="blog-title"></h1>
+        <div id="blog-content"></div>
+        <a href="index.html">Back to Home</a>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const content = sessionStorage.getItem('blogPostContent');
+            const title = sessionStorage.getItem('blogPostTitle');
+            if (content && title) {
+                document.getElementById('blog-title').textContent = title;
+                document.getElementById('blog-content').innerHTML = content;
+                // Apply Prism highlighting to code blocks
+                Prism.highlightAll();
+                // Render MathJax content
+                MathJax.typesetPromise([document.getElementById('blog-content')]).catch((err) => console.log('MathJax typesetting failed: ' + err.message));
+            } else {
+                document.getElementById('blog-content').innerHTML = '<p>No blog post content found.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

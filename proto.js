@@ -40,20 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
     backToTopButton.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-
-    // Add hover effect to project links
-    const projectLinks = document.querySelectorAll('.section ul li a');
-    projectLinks.forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            link.style.textDecoration = 'underline';
-        });
-        link.addEventListener('mouseleave', () => {
-            link.style.textDecoration = 'none';
-        });
-    });
-
+    
     // Load and render blog posts
-    fetch('./blogs/posts.json')  // Use a relative path
+    fetch('./blogs/posts.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -71,21 +60,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 blogContainer.appendChild(postElement);
             });
 
-            // Add click event listeners to blog post links
+            // Event listener for blog post links
             document.querySelectorAll('.blog-post-link').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const postFile = e.target.getAttribute('data-post');
-                    fetch(`./blogs/${postFile}`)  // Use a relative path
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error(`HTTP error! status: ${response.status}`);
-                            }
-                            return response.text();
-                        })
+                    const postTitle = e.target.textContent;
+                    fetch(`./blogs/${postFile}`)
+                        .then(response => response.text())
                         .then(markdown => {
                             const html = marked.parse(markdown);
-                            showBlogPostModal(html);
+                            showBlogPost(html, postTitle);
                         })
                         .catch(error => {
                             console.error('Error loading blog post:', error);
@@ -99,29 +84,23 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('blog-posts').innerHTML = '<p>Failed to load blog posts. Please try again later.</p>';
         });
 
-    function showBlogPostModal(content) {
-        const modal = document.createElement('div');
-        modal.className = 'modal';
-        modal.innerHTML = `
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div class="blog-post-content">${content}</div>
-            </div>
-        `;
-        document.body.appendChild(modal);
-
-        // Render MathJax content
-        MathJax.typesetPromise([modal]).catch((err) => console.log('MathJax typesetting failed: ' + err.message));
-
-        const closeBtn = modal.querySelector('.close');
-        closeBtn.onclick = function() {
-            document.body.removeChild(modal);
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                document.body.removeChild(modal);
+    // Modify the marked options to use Prism for syntax highlighting
+    marked.setOptions({
+        highlight: function(code, lang) {
+            if (Prism.languages[lang]) {
+                return Prism.highlight(code, Prism.languages[lang], lang);
+            } else {
+                return code;
             }
         }
+    });
+
+    function showBlogPost(content, title) {
+        // Store the content in sessionStorage
+        sessionStorage.setItem('blogPostContent', content);
+        sessionStorage.setItem('blogPostTitle', title);
+        
+        // Navigate to the blog post page
+        window.location.href = 'blogpost.html';
     }
 });
