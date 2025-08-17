@@ -4,91 +4,295 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haitao Gao - Academic Profile</title>
-    <link rel="stylesheet" href="proto.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-            },
-            svg: {
-                fontCache: 'global'
-            }
-        };
-    </script>
     <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: white;
+            color: black;
+            line-height: 1.4;
+        }
+        
         .container {
-            width: 100%;
-            max-width: 2200px; /* Increased from 1140px */
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #ffffff;
-            box-sizing: border-box;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        
+        .contact-info {
+            margin: 15px 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        
+        .nav-column {
+            width: 45%;
+        }
+        
+        .nav-column h3 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-decoration: underline;
+        }
+        
+        .nav-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .nav-column li {
+            margin: 5px 0;
+        }
+        
+        .nav-column a {
+            color: #0000EE;
+            text-decoration: none;
+        }
+        
+        .nav-column a:hover {
+            text-decoration: underline;
+        }
+        
+        .main-content {
+            margin: 30px 0;
+        }
+        
+        .section {
+            margin: 20px 0;
+        }
+        
+        .section h2 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .section p {
+            margin: 10px 0;
+        }
+        
+        .section ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .section li {
+            margin: 5px 0;
+        }
+        
+        .papers-list li {
+            margin: 15px 0;
+        }
+        
+        .three-columns {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        
+        .column {
+            width: 30%;
+        }
+        
+        .column h3 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-decoration: underline;
+        }
+        
+        .column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .column li {
+            margin: 5px 0;
+        }
+        
+        .column a {
+            color: #0000EE;
+            text-decoration: none;
+        }
+        
+        .column a:hover {
+            text-decoration: underline;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-c.min.js"></script>
-    <!-- Add more language components as needed -->
 </head>
 <body>
     <div class="container">
-        <header>
+        <div class="header">
             <img src="proto.jpg" alt="Haitao Gao" class="profile-image">
             <h1>Haitao Gao</h1>
-            <p>Postgraduate Researcher | University of New South Wales, Australia</p>
-            <p>Email: kaigao0623@gmail.com</p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/haitaogao/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/accuracy-maker" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://x.com/accuracy_maker" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+            <p class="subtitle">University of New South Wales, Sydney, Australia</p>
+        </div>
+        
+        <div class="nav-links">
+            <div class="nav-column">
+                <h3>Contact info</h3>
+                <ul>
+                    <li><a href="mailto:z5506409@ad.unsw.edu.au">Email</a></li>
+                    <li><a href="https://github.com/accuracy-maker" target="_blank">GitHub</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#papers">Papers and preprints</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                </ul>
             </div>
-        </header>
+            
+            <div class="nav-column">
+                <h3>Research & Resources</h3>
+                <ul>
+                    <li><a href="https://github.com/accuracy-maker/robotics-tutorial" target="_blank">Robotics Tutorial</a></li>
+                    <li><a href="https://github.com/accuracy-maker/AutoGrad" target="_blank">AutoGrad Framework</a></li>
+                    <li><a href="https://github.com/accuracy-maker/Prioritized-Sequence-Experience-Replay" target="_blank">PSER Implementation</a></li>
+                    <li><a href="#teaching">Teaching</a></li>
+                    <li><a href="#honors">Honors & Awards</a></li>
+                </ul>
+            </div>
+        </div>
         
-        <section class="section">
-            <h2>Research Interests</h2>
-            <p>My research focuses on the intersection of Artificial Intelligence and Robotics, with a particular emphasis on developing innovative solutions in these fields. I am passionate about advancing the frontiers of machine learning and its applications in autonomous systems.</p>
-        </section>
+        <div class="main-content">
+            <p>I am a Postgraduate student at the University of New South Wales, Australia. My research focuses on the intersection of Statistics and Medical Robotics, with a particular emphasis on developing innovative and efficient solutions in these fields.</p>
+            
+            <p>I am passionate about advancing the frontiers of mathematics, statistics, computer science, machine learning and its applications in real-world problems.</p>
+            
+            <p>You can find <a href="#papers">my papers and preprints</a>, <a href="#projects">my projects</a>, and <a href="#teaching">my teaching experience</a> through the links above.</p>
+            
+            <p>Think you might know me from somewhere? Here's how you can <a href="mailto:z5506409@ad.unsw.edu.au">contact me</a>.</p>
+        </div>
         
-        <section class="section">
-            <h2>Areas of Expertise</h2>
-            <ul>
-                <li>Data Science and Analytics</li>
-                <li>AI Model Development and Implementation</li>
-                <li>Robotics and Autonomous Systems</li>
+        <div class="section" id="education">
+            <h2>Education</h2>
+            <ul class="education-list">
+                <li>
+                    <strong>Ph.D. in Medical Robotics</strong><br>
+                    University of New South Wales, Sydney, Australia<br>
+                    <em>2025 - 2029</em><br>
+                    Research focus: Statistics and Medical Robotics
+                </li>
+                <li>
+                    <strong>Master of Information Technology</strong><br>
+                    University of New South Wales, Sydney, Australia<br>
+                    <em>2023 - 2025</em><br>
+                    Specialization: Artificial Intelligence and Statistics
+                </li>
+                <li>
+                    <strong>Bachelor of Telecommunication Engineering</strong><br>
+                    Hangzhou Dianzi University, Hangzhou, China<br>
+                    <em>2019 - 2023</em><br>
+                    Major: Telecommunication Engineering
+                </li>
             </ul>
-        </section>
+        </div>
         
-        <section class="section">
-            <h2>Selected Projects</h2>
-            <ul>
-                <li><strong><a href="https://github.com/accuracy-maker/robotics-tutorial">Robotics Tutorial</a></strong>: An educational project designed to introduce beginners to fundamental concepts in robotics and classic reinforcement learning algorithms.</li>
-                <li><strong><a href="https://github.com/accuracy-maker/AutoGrad">AutoGrad</a></strong>: A self-developed deep learning framework focusing on automatic differentiation techniques.</li>
-                <li><strong><a href="https://github.com/accuracy-maker/Prioritized-Sequence-Experience-Replay">Prioritized Sequence Experience Replay</a></strong>: An implementation of an advanced reinforcement learning technique for improved off-policy learning.</li>
-            </ul>
-        </section>
-        
-        <section class="section">
+        <div class="section" id="papers">
             <h2>Papers</h2>
             <ul class="papers-list">
                 <li>
-                    <strong>Gao, H.</strong>, Smith, J., & Johnson, A. (2023). "Advancements in Reinforcement Learning for Autonomous Systems." <em>Journal of Artificial Intelligence</em>, 15(3), 234-250 (fake just for test).
+                    Potential Well Control of Magnetic Microrobots: From 3D Infeasibility to 2D Realization (ICBIR2025).
                 </li>
                 <li>
-                    <strong>Gao, H.</strong> & Brown, M. (2022). "A Novel Approach to Prioritized Experience Replay in Deep Q-Networks." <em>Proceedings of the International Conference on Machine Learning</em>, 1123-1135 (fake just for test).
+                    Physics-Informed Neural Networks for Quasi-Static Tip Position Control of Magnetic Soft Robots (ICBIR2025).
                 </li>
             </ul>
-        </section>
+        </div>
         
-        <section class="section" id="blog">
-            <h2>Blog Posts</h2>
-            <div id="blog-posts"></div>
-        </section>
+        <div class="section" id="projects">
+            <h2>Selected Projects</h2>
+            <ul>
+                <li><strong><a href="https://github.com/accuracy-maker/robotics-tutorial" target="_blank">Robotics Tutorial</a></strong>: An educational project designed to introduce beginners to fundamental concepts in robotics and classic reinforcement learning algorithms.</li>
+                <li><strong><a href="https://github.com/accuracy-maker/AutoGrad" target="_blank">AutoGrad</a></strong>: A self-developed deep learning framework focusing on automatic differentiation techniques.</li>
+                <li><strong><a href="https://github.com/accuracy-maker/Prioritized-Sequence-Experience-Replay" target="_blank">Prioritized Sequence Experience Replay</a></strong>: An implementation of an advanced reinforcement learning technique for improved off-policy learning.</li>
+            </ul>
+        </div>
+        
+        <div class="section" id="teaching">
+            <h2>Teaching/Tutoring</h2>
+            <h3>Current Teaching/Tutoring</h3>
+            <ul>
+                <li><strong>COMP9517(Computer Vision)</strong> - University of New South Wales, Term3 2025</li>
+            </ul>
+            
+            <h3>Previous Teaching/Tutoring</h3>
+            <ul>
+                <li><strong>COMP9517(Computer Vision)</strong> - University of New South Wales, Term1 2025</li>
+                
+            </ul>
+        </div>
+        
+        <div class="section" id="honors">
+            <h2>Honors & Awards</h2>
+            <ul>
+                <li><strong>UNSW TFS Scholarship</strong> - University of New South Wales, 2025</li>
+                <li><strong>AWS Hackathon the Second Place</strong> - AWS Hackathon, 2024</li>
+                <li><strong>Outstanding Undergraduate Student Award</strong> - Hangzhou Dianzi University, 2023</li>
+                <li><strong>Outstanding Undergraduate Thesis (Full Marks)</strong> - Hangzhou Dianzi University, 2023</li>
+                <li><strong>Undergraduate Scholarship (x7)</strong> - Hangzhou Dianzi University, 2020-2023</li>
+            </ul>
+        </div>
+        
+        <div class="three-columns">
+            <div class="column">
+                <h3>Research Areas</h3>
+                <ul>
+                    <li><a href="#papers">Extreme Value Theory</a></li>
+                    <li><a href="#papers">Bayesian Statistics</a></li>
+                    <li><a href="#papers">Medical Robotics</a></li>
+                </ul>
+            </div>
+            
+            <div class="column">
+                <h3>Technical Skills</h3>
+                <ul>
+                    <li>R, Python, C++</li>
+                    <li>PyTorch</li>
+                    <li>Git, Linux</li>
+                </ul>
+            </div>
+            
+            <div class="column">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#projects">Code repositories</a></li>
+                    <li><a href="#teaching">Course materials</a></li>
+                    <li><a href="#papers">Publications</a></li>
+                    <li><a href="mailto:kaigao0623@gmail.com">Contact</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
     <script src="proto.js"></script>
 </body>
 </html>
