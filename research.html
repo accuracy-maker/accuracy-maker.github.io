@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Haitao Gao</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #F8F8FF;
+            color: #000;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .nav-bar {
+            text-align: right;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .nav-bar a {
+            color: #0000EE;
+            text-decoration: underline;
+        }
+        
+        .nav-bar a:hover {
+            color: #551A8B;
+        }
+        
+        .nav-divider {
+            border-top: 1px solid #000;
+            margin: 15px 0 25px 0;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .main-content {
+            flex: 1;
+        }
+        
+        .section {
+            margin: 25px 0;
+        }
+        
+        .section h2 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .section ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .section li {
+            margin: 8px 0;
+        }
+        
+        .subsection {
+            margin-left: 20px;
+            font-style: italic;
+        }
+        
+        .decorative-image-container {
+            width: 400px;
+            flex-shrink: 0;
+        }
+        
+        .decorative-image {
+            width: 400px;
+            height: auto;
+        }
+        
+        .final-divider {
+            border-top: 1px solid #000;
+            margin: 25px 0;
+        }
+        
+        a {
+            color: #0000EE;
+            text-decoration: underline;
+        }
+        
+        a:hover {
+            color: #551A8B;
+        }
+        
+        strong {
+            font-weight: bold;
+        }
+        
+        em {
+            font-style: italic;
+        }
+        
+        .two-column-list {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .two-column-list ul {
+            flex: 1;
+        }
+        
+        .publications-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 10px;
+        }
+        
+        .publications-table tr {
+            min-height: 120px;
+            height: 120px;
+        }
+        
+        .publications-table tr td {
+            padding: 15px 15px 15px 0;
+            vertical-align: top;
+            height: 120px;
+        }
+        
+        .publications-table tr {
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .publications-table tr:nth-child(odd) {
+            background-color: #E6F3FF;
+        }
+        
+        .publications-table tr:nth-child(even) {
+            background-color: transparent;
+        }
+        
+        .publications-table td:first-child {
+            width: 30px;
+            font-weight: bold;
+            padding-right: 10px;
+        }
+        
+        .publications-table td:nth-child(2) {
+            width: auto;
+        }
+        
+        .publications-table td:last-child {
+            width: 150px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        
+        .publication-title {
+            font-style: italic;
+        }
+        
+        .publication-info {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        .publication-links {
+            margin-top: 0;
+        }
+        
+        .publication-links li {
+            display: inline;
+        }
+        
+        .publication-links li:after {
+            content: ", ";
+        }
+        
+        .publication-links li:last-child:after {
+            content: ".";
+        }
+        
+        .publication-links-desktop {
+            display: block;
+        }
+        
+        .publication-links-mobile {
+            display: none;
+            margin-top: 5px;
+        }
+        
+        .publication-links-desktop ul,
+        .publication-links-mobile ul {
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+        }
+        
+        .publication-links-desktop li,
+        .publication-links-mobile li {
+            display: inline;
+        }
+        
+        .publication-links-desktop li:after,
+        .publication-links-mobile li:after {
+            content: ", ";
+        }
+        
+        .publication-links-desktop li:last-child:after,
+        .publication-links-mobile li:last-child:after {
+            content: ".";
+        }
+        
+        @media (max-width: 900px) {
+            .publication-links-desktop {
+                display: none;
+            }
+            
+            .publication-links-mobile {
+                display: block;
+            }
+            
+            .publications-table td:last-child {
+                width: 0;
+                padding: 0;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <a href="index.html">home</a> / <a href="research.html">research</a> / <a href="teaching.html">teaching</a> / <a href="#code">code</a>
+        </div>
+        <div class="nav-divider"></div>
+        
+        <div class="content-wrapper">
+            <div class="main-content">
+                <div class="section">
+                    <h2>Coauthors</h2>
+                    <div class="two-column-list">
+                        <ul>
+                            <li><a href="#">Collaborator 1</a></li>
+                            <li><a href="#">Collaborator 2</a></li>
+                            <li><a href="#">Collaborator 3</a></li>
+                            <li><a href="#">Collaborator 4</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Collaborator 5</a></li>
+                            <li><a href="#">Collaborator 6</a></li>
+                            <li><a href="#">Collaborator 7</a></li>
+                            <li><a href="#">Collaborator 8</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="final-divider"></div>
+                
+                <div class="section">
+                    <h2>Publications and preprints</h2>
+                    <table class="publications-table">
+                        <tr>
+                            <td>1.</td>
+                            <td>
+                                <span class="publication-title">Potential Well Control of Magnetic Microrobots: From 3D Infeasibility to 2D Realization</span><br>
+                                <span class="publication-info">ICBIR 2025.</span>
+                                <div class="publication-links-mobile">
+                                    <ul>
+                                        <li><a href="#">arXiv preprint</a></li>
+                                        <li><a href="#">published version</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="publication-links-desktop">
+                                    <ul>
+                                        <li><a href="#">arXiv preprint</a></li>
+                                        <li><a href="#">published version</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td>
+                                <span class="publication-title">Physics-Informed Neural Networks for Quasi-Static Tip Position Control of Magnetic Soft Robots</span><br>
+                                <span class="publication-info">ICBIR 2025.</span>
+                                <div class="publication-links-mobile">
+                                    <ul>
+                                        <li><a href="#">arXiv preprint</a></li>
+                                        <li><a href="#">published version</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="publication-links-desktop">
+                                    <ul>
+                                        <li><a href="#">arXiv preprint</a></li>
+                                        <li><a href="#">published version</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td>
+                                <span class="publication-title">Physics-Informed Neural Networks for Quasi-Static Tip Position Control of Magnetic Soft Robots</span><br>
+                                <span class="publication-info">ICBIR 2025.</span>
+                                <div class="publication-links-mobile">
+                                    <ul>
+                                        <li><a href="#">arXiv preprint</a></li>
+                                        <li><a href="#">published version</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="publication-links-desktop">
+                                    <ul>
+                                        <li><a href="#">arXiv preprint</a></li>
+                                        <li><a href="#">published version</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="final-divider"></div>
+            </div>
+            
+            <div class="decorative-image-container">
+                <img src="hattile_page.png" alt="Decorative pattern" class="decorative-image">
+            </div>
+        </div>
+    </div>
+    
+    <script src="proto.js"></script>
+</body>
+</html>
+
