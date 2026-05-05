@@ -153,11 +153,56 @@
         .publications-table td:nth-child(2) {
             width: auto;
         }
-        
+
+        .publications-table td:nth-child(3) {
+            width: 190px;
+            font-size: 14px;
+            vertical-align: top;
+            padding-right: 15px;
+            color: #333;
+        }
+
+        .publications-table td:nth-child(4) {
+            width: 60px;
+            font-size: 14px;
+            vertical-align: top;
+            padding-right: 15px;
+            color: #333;
+            text-align: center;
+        }
+
         .publications-table td:last-child {
             width: 150px;
             font-size: 14px;
             vertical-align: top;
+        }
+
+        .publications-table th {
+            font-size: 13px;
+            font-weight: bold;
+            padding: 8px 15px 8px 0;
+            text-align: left;
+            border-bottom: 2px solid #000;
+            background-color: transparent;
+        }
+
+        .publications-table th:nth-child(4) {
+            text-align: center;
+        }
+
+        .sort-header {
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .sort-header:hover {
+            color: #0000EE;
+        }
+
+        #sort-arrow {
+            font-size: 11px;
+            margin-left: 3px;
         }
         
         .publication-title {
@@ -221,14 +266,19 @@
             .publication-links-desktop {
                 display: none;
             }
-            
+
             .publication-links-mobile {
                 display: block;
             }
-            
+
             .publications-table td:last-child {
                 width: 0;
                 padding: 0;
+            }
+
+            .publications-table td:nth-child(3),
+            .publications-table th:nth-child(3) {
+                display: none;
             }
         }
         
@@ -245,27 +295,39 @@
             <div class="main-content">
                 <div class="section">
                     <h2>Publications and preprints</h2>
-                    <table class="publications-table">
-                        <tr>
+                    <table class="publications-table" id="pub-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Title</th>
+                                <th>Journal / Conference</th>
+                                <th class="sort-header" onclick="sortByYear()" title="Sort by year">Year <span id="sort-arrow">↕</span></th>
+                                <th>Links</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pub-tbody">
+                        <tr data-year="2023">
                             <td>1.</td>
                             <td>
                                 <span class="publication-title">IMPLEMENTATION AND ANALYSIS OF DEEP LEARNING METHODS FOR PHOTOVOLTAIC POWER GENERATION FORECASTING</span><br>
                                 <span class="publication-info">Undergraduate thesis.</span>
                                 <div class="publication-links-mobile">
                                     <ul>
-                                        <li><a href="undergrad_thesis.pdf">PDF</a></li>
+                                        <li><a href="papers/undergrad_thesis.pdf">PDF</a></li>
                                     </ul>
                                 </div>
                             </td>
+                            <td>University Thesis <strong style="color:#0000EE;">[unpublished]</strong></td>
+                            <td>2023</td>
                             <td>
                                 <div class="publication-links-desktop">
                                     <ul>
-                                        <li><a href="undergrad_thesis.pdf">PDF</a></li>
+                                        <li><a href="papers/undergrad_thesis.pdf">PDF</a></li>
                                     </ul>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr data-year="2025">
                             <td>2.</td>
                             <td>
                                 <span class="publication-title">BAYESIAN MIXTURE MODEL OF R-PARETO
@@ -273,44 +335,48 @@
                                 <span class="publication-info">Master thesis.</span>
                                 <div class="publication-links-mobile">
                                     <ul>
-                                        <li><a href="postgrad_thesis.pdf">PDF</a></li>
-                                        <li><a href="postgrad_pre.pdf">Presentation</a></li>
+                                        <li><a href="papers/postgrad_thesis.pdf">PDF</a></li>
+                                        <li><a href="papers/postgrad_pre.pdf">Presentation</a></li>
                                         <li><a href="https://github.com/accuracy-maker/gradute_thesis">Code</a></li>
                                     </ul>
                                 </div>
                             </td>
+                            <td>University Thesis <strong style="color:#0000EE;">[unpublished]</strong></td>
+                            <td>2025</td>
                             <td>
                                 <div class="publication-links-desktop">
                                     <ul>
-                                        <li><a href="postgrad_thesis.pdf">PDF</a></li>
-                                        <li><a href="postgrad_pre.pdf">Presentation</a></li>
+                                        <li><a href="papers/postgrad_thesis.pdf">PDF</a></li>
+                                        <li><a href="papers/postgrad_pre.pdf">Presentation</a></li>
                                         <li><a href="https://github.com/accuracy-maker/gradute_thesis">Code</a></li>
                                     </ul>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr data-year="2026">
                             <td>3.</td>
                             <td>
                                 <span class="publication-title">TRANSFERABLE DEEP REINFORCEMENT LEARNING WITH EDGE-CONTOUR-DEPTH FUSION FOR AUTONOMOUS WIRELESS CAPSULE ENDOSCOPY NAVIGATION</span><br>
                                 <span class="publication-info"></span>
                                 <div class="publication-links-mobile">
                                     <ul>
-                                        <li><a href="#">Preprint</a></li>
+                                        <li><a href="papers/Manuscript_AS.pdf">Manuscript</a></li>
                                         <li><a href="#">Published Version</a></li>
                                     </ul>
                                 </div>
                             </td>
+                            <td>Advanced Science<br><strong style="color:#CC0000;">[Under Review]</strong></td>
+                            <td>2026</td>
                             <td>
                                 <div class="publication-links-desktop">
                                     <ul>
-                                        <li><a href="#">Preprint</a></li>
+                                        <li><a href="papers/Manuscript_AS.pdf">Manuscript</a></li>
                                         <li><a href="#">Published Version</a></li>
                                     </ul>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr data-year="2026">
                             <td>4.</td>
                             <td>
                                 <span class="publication-title">PERCOLATION CRITICAL PROBABILITY OF APERIODIC SMITH HAT TILE(1, $\sqrt{3}$)</span><br>
@@ -321,6 +387,8 @@
                                     </ul>
                                 </div>
                             </td>
+                            <td>Arxiv</td>
+                            <td>2026</td>
                             <td>
                                 <div class="publication-links-desktop">
                                     <ul>
@@ -329,6 +397,30 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr data-year="2026">
+                            <td>5.</td>
+                            <td>
+                                <span class="publication-title">ANATOMICAL LANDMARK-GUIDED DEEP REINFORCEMENT LEARNING FOR AUTONOMOUS GASTRIC NAVIGATION</span><br>
+                                <span class="publication-info"></span>
+                                <div class="publication-links-mobile">
+                                    <ul>
+                                        <li><a href="papers/ICRA_Workshop_2026.pdf">PDF</a></li>
+                                        <li><a href="https://sites.google.com/view/icra26-workshop-medical-robot/home">Website</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>ICRA Workshop (Medical Robot) 2026</td>
+                            <td>2026</td>
+                            <td>
+                                <div class="publication-links-desktop">
+                                    <ul>
+                                        <li><a href="papers/ICRA_Workshop_2026.pdf">PDF</a></li>
+                                        <li><a href="https://sites.google.com/view/icra26-workshop-medical-robot/home">Website</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
                 
@@ -343,6 +435,21 @@
     </div>
     
     <script src="proto.js"></script>
+    <script>
+        let sortAsc = null;
+        function sortByYear() {
+            const tbody = document.getElementById('pub-tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            sortAsc = sortAsc === true ? false : true;
+            rows.sort((a, b) => {
+                const ya = parseInt(a.dataset.year, 10);
+                const yb = parseInt(b.dataset.year, 10);
+                return sortAsc ? ya - yb : yb - ya;
+            });
+            rows.forEach(r => tbody.appendChild(r));
+            document.getElementById('sort-arrow').textContent = sortAsc ? '↑' : '↓';
+        }
+    </script>
 </body>
 </html>
 
