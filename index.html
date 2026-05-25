@@ -3,207 +3,359 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haitao Gao - Academic Profile</title>
+    <title>Haitao Gao</title>
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            padding: 40px;
-            background-color: #F8F8FF;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 15px;
+            line-height: 1.7;
+            background: #fff;
             color: #000;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1400px;
+            padding: 40px 60px;
+            max-width: 960px;
             margin: 0 auto;
         }
-        
+
+        a { color: #1772d0; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ── top nav ── */
         .nav-bar {
             text-align: right;
-            margin-bottom: 15px;
-            font-size: 14px;
+            font-size: 13px;
+            margin-bottom: 14px;
+            font-family: Arial, Helvetica, sans-serif;
         }
-        
-        .nav-bar a {
-            color: #0000EE;
-            text-decoration: underline;
-        }
-        
-        .nav-bar a:hover {
-            color: #551A8B;
-        }
-        
-        .nav-divider {
+        .nav-bar a { color: #0000EE; text-decoration: underline; }
+        .nav-bar a:hover { color: #551A8B; }
+
+        hr.rule {
+            border: none;
             border-top: 1px solid #000;
-            margin: 15px 0 25px 0;
+            margin: 0 0 30px 0;
         }
-        
-        .content-wrapper {
+
+        /* ── centered name ── */
+        .site-name {
+            text-align: center;
+            font-size: 32px;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+            margin-bottom: 28px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* ── profile block ── */
+        .profile-block {
             display: flex;
-            gap: 30px;
+            gap: 36px;
+            align-items: flex-start;
+            margin-bottom: 28px;
         }
-        
-        .main-content {
-            flex: 1;
+
+        /* left col: photo + links */
+        .profile-left {
+            width: 170px;
+            flex-shrink: 0;
+            text-align: center;
         }
-        
-        .profile-section {
-            margin-bottom: 25px;
-        }
-        
-        .name {
-            font-size: 28px;
-            font-weight: bold;
-            margin: 0;
-        }
-        
-        .affiliation {
-            font-size: 14px;
-            margin: 8px 0;
-        }
-        
-        .affiliation a {
-            color: #0000EE;
-            text-decoration: underline;
-        }
-        
-        .contact-info {
-            margin: 15px 0;
-            font-size: 14px;
-        }
-        
-        .contact-info div {
-            margin: 5px 0;
-        }
-        
-        .contact-info a {
-            color: #0000EE;
-            text-decoration: underline;
-        }
-        
-        .section {
-            margin: 25px 0;
-        }
-        
-        .section h2 {
-            font-size: 16px;
-            font-weight: bold;
+
+        .profile-left img {
+            width: 170px;
+            height: auto;
+            display: block;
             margin-bottom: 10px;
         }
-        
-        .section ul {
-            margin: 10px 0;
-            padding-left: 20px;
+
+        .profile-links {
+            font-size: 14px;
+            line-height: 2;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000;
         }
-        
-        .section li {
-            margin: 8px 0;
+
+        .profile-links a {
+            color: #1772d0;
+            text-decoration: none;
         }
-        
-        .subsection {
-            margin-left: 20px;
-            font-style: italic;
+        .profile-links a:hover { text-decoration: underline; }
+
+        /* right col: bio */
+        .profile-right {
+            flex: 1;
+            font-size: 15px;
         }
-        
-        .profile-image-container {
-            width: 200px;
-            flex-shrink: 0;
+
+        .profile-right p {
+            margin-bottom: 12px;
         }
-        
-        .profile-image {
-            width: 200px;
-            height: auto;
+
+        .profile-right p:last-child { margin-bottom: 0; }
+
+        .profile-right strong { font-weight: bold; }
+
+        /* ── section headings ── */
+        .section { margin-bottom: 26px; }
+
+        .section h2 {
+            font-size: 20px;
+            font-weight: normal;
+            margin-bottom: 12px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ccc;
+            font-family: 'Times New Roman', Times, serif;
         }
-        
-        .final-divider {
-            border-top: 1px solid #000;
-            margin: 25px 0;
+
+        /* ── news ── */
+        .news-list { list-style: none; padding: 0; }
+
+        .news-list li {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
         }
-        
-        a {
-            color: #0000EE;
-            text-decoration: underline;
+
+        .news-date {
+            white-space: nowrap;
+            color: #555;
+            font-size: 13px;
+            min-width: 82px;
         }
-        
-        a:hover {
-            color: #551A8B;
+
+        /* ── publications ── */
+        .pub-entry {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
         }
-        
-        strong {
+
+        .pub-num {
+            min-width: 22px;
+            color: #555;
+            font-weight: bold;
+            padding-top: 1px;
+        }
+
+        .pub-body .pub-title {
             font-weight: bold;
         }
-        
-        em {
-            font-style: italic;
+
+        .pub-body .pub-venue {
+            color: #333;
+            font-size: 13px;
+        }
+
+        .pub-body .pub-links {
+            font-size: 13px;
+            margin-top: 3px;
+        }
+
+        .pub-links a { margin-right: 10px; }
+
+        .tag-review { color: #CC0000; font-weight: bold; }
+        .tag-arxiv  { color: #1772d0; font-weight: bold; }
+
+        /* ── plain lists ── */
+        .plain-list { list-style: none; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+        .plain-list li { margin-bottom: 7px; font-size: 14px; }
+
+        /* ── footer ── */
+        .footer {
+            font-size: 12px;
+            color: #777;
+            text-align: center;
+            margin-top: 8px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* ── responsive ── */
+        @media (max-width: 640px) {
+            body { padding: 20px 18px; }
+            .profile-block { flex-direction: column; align-items: center; }
+            .profile-left { width: 140px; }
+            .profile-left img { width: 140px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="nav-bar">
-            <a href="index.html">home</a> / <a href="research.html">research</a> / <a href="teaching.html">teaching</a> / <a href="code.html">code</a>
-        </div>
-        <div class="nav-divider"></div>
-        
-        <div class="content-wrapper">
-            <div class="main-content">
-                <div class="profile-section">
-                    <h1 class="name">Haitao Gao</h1>
-                    <p class="affiliation">
-                        Postgraduate student<br>
-                        <a href="https://www.unsw.edu.au" target="_blank">University of New South Wales</a>
-                    </p>
-                </div>
-                
-                <div class="contact-info">
-                    <div>email: haitao.gao@unsw.edu.au</div>
-                    <div><a href="https://github.com/accuracy-maker" target="_blank">GitHub</a></div>
-                </div>
-                
-                <div class="section">
-                    <h2>Research interests</h2>
-                    <ul>
-                        <li>Robotic Simulation</li>
-                        <li>Lie Group Theory</li>
-                        <li>Bayesian Statistics and Extreme Value Theory</li>
-                    </ul>
-                </div>
-                
-                <div class="section">
-                    <h2>Honors & Awards</h2>
-                    <ul>
-                        <li><strong>UNSW TFS Scholarship</strong> - University of New South Wales, 2025</li>
-                        <li><strong>AWS Hackathon the Second Place</strong> - AWS Hackathon, 2024</li>
-                        <li><strong>Outstanding Undergraduate Student Award</strong> - Hangzhou Dianzi University, 2023</li>
-                        <li><strong>Outstanding Undergraduate Thesis (Full Marks)</strong> - Hangzhou Dianzi University, 2023</li>
-                        <li><strong>Undergraduate Scholarship (x7)</strong> - Hangzhou Dianzi University, 2020-2023</li>
-                    </ul>
-                </div>
-                
-                <div class="section">
-                    <h2>Education</h2>
-                    <ul>
-                        <li><strong>2025-2029: Ph.D. candidate</strong>, University of New South Wales<br>
-                            <span class="subsection">Continuum Robotics</span>                      </li>
-                        <li><strong>2023-2025: Master of Information Technology</strong>, University of New South Wales<br>
-                            
-                        </li>
-                        <li><strong>2019-2023: Bachelor of Engineering</strong>, Hangzhou Dianzi University<br>
-                    
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="final-divider"></div>
+
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <a href="index.html">home</a> /
+        <a href="research.html">research</a> /
+        <a href="teaching.html">teaching</a> /
+        <a href="code.html">code</a>
+    </div>
+    <hr class="rule">
+
+    <!-- Centered name -->
+    <h1 class="site-name">Haitao Gao</h1>
+
+    <!-- Profile block -->
+    <div class="profile-block">
+
+        <!-- Left: photo + pipe links -->
+        <div class="profile-left">
+            <img src="proto.jpg" alt="Haitao Gao">
+            <div class="profile-links">
+                | <a href="Haitao_Resume.pdf" target="_blank">CV</a>
+                | <a href="mailto:haitao.gao@unsw.edu.au">Email</a>
+                | <a href="https://github.com/accuracy-maker" target="_blank">Github</a> |
+                <br>
+                | <a href="https://scholar.google.com.au/citations?user=dlmkgeoAAAAJ&hl=en" target="_blank">Google Scholar</a> |
             </div>
-            
-            <div class="profile-image-container">
-                <img src="proto.jpg" alt="Edward (Haitao) Gao" class="profile-image">
+        </div>
+
+        <!-- Right: bio -->
+        <div class="profile-right">
+            <p>I am a Ph.D. candidate at the <a href="https://www.unsw.edu.au" target="_blank">University of New South Wales</a>, working in the field of continuum robotics, supervised by <a href="https://www.drliaowu.com/" target="_blank">Professor Leo Wu</a>. My Ph.D. is supported by the <strong>UNSW TFS Scholarship</strong>.</p>
+
+            <p>I received my Master of Information Technology from <a href="https://www.unsw.edu.au" target="_blank">UNSW</a>, where I worked on my thesis with <a href="https://web.maths.unsw.edu.au/~scott/Welcome.html" target="_blank">Professor Scott Sisson</a>, <a href="https://www.borisberanger.com/" target="_blank">Dr. Boris Beranger</a>, and <a href="https://pangchung.github.io/" target="_blank">Dr. Peng Zhong</a>. I received my B.E. from <a href="https://www.hdu.edu.cn" target="_blank">Hangzhou Dianzi University</a>, supervised by <a href="https://www.researchgate.net/profile/Chunshan-Liu" target="_blank">Professor Chunshan Liu</a>. </p>
+
+            <p><strong>Goal:</strong> Intelligent medical robotic systems that assist and improve people's lives.</p>
+
+            <p><strong>Research Interest:</strong> Robotics and mathematics.</p>
+
+            <p><strong>Research Question:</strong> How can we build scalable learning frameworks that transfer reliably from simulation to real medical robots operating in unstructured, in-body environments?</p>
+
+            <p>Email: haitao.gao [AT] unsw.edu.au</p>
+        </div>
+    </div>
+
+    <hr class="rule">
+
+    <!-- News -->
+    <div class="section">
+        <h2>News</h2>
+        <ul class="news-list">
+            <li>
+                <span class="news-date">[Jul 13, 2026]</span>
+                <span>Will attend <strong>RSS 2026</strong> (Robotics: Science and Systems).</span>
+            </li>
+            <li>
+                <span class="news-date">[May 12, 2026]</span>
+                <span>Percolation paper submitted to <strong>Physical Review E</strong>. <a href="https://arxiv.org/abs/2604.21165" target="_blank">arXiv</a></span>
+            </li>
+            <li>
+                <span class="news-date">[May 5, 2026]</span>
+                <span>Paper accepted at <strong>ICRA Workshop on Medical Robotics 2026</strong> — anatomical-landmark-guided DRL for gastric navigation. <a href="https://arxiv.org/abs/2605.08269" target="_blank">arXiv</a></span>
+            </li>
+            <li>
+                <span class="news-date">[Jan 6, 2026]</span>
+                <span>Manuscript on DRL with edge-contour-depth fusion for wireless capsule endoscopy submitted to <strong>Advanced Science</strong>.</span>
+            </li>
+            <li>
+                <span class="news-date">[Dec 2025]</span>
+                <span>Graduated with a <strong>Master of Information Technology</strong> from the University of New South Wales.</span>
+            </li>
+            <li>
+                <span class="news-date">[Dec 2025]</span>
+                <span>Two papers published at <strong>ICBIR 2025</strong> — magnetic trap control and physics-informed neural networks for magnetic catheters.</span>
+            </li>
+            <li>
+                <span class="news-date">[Jul 2025]</span>
+                <span>Awarded <strong>UNSW TFS Scholarship</strong> for Ph.D. studies in continuum robotics.</span>
+            </li>
+        </ul>
+    </div>
+
+    <hr class="rule">
+
+    <!-- Selected Publications -->
+    <div class="section">
+        <h2>Selected Publications &nbsp;<span style="font-size:14px;">— <a href="research.html">full list</a></span></h2>
+
+        <div class="pub-entry">
+            <div class="pub-num">1.</div>
+            <div class="pub-body">
+                <div class="pub-title">Anatomical Landmark-Guided Deep Reinforcement Learning for Autonomous Gastric Navigation</div>
+                <div class="pub-venue">ICRA Workshop (Medical Robotics) &nbsp;2026</div>
+                <div class="pub-links">
+                    <a href="https://arxiv.org/abs/2605.08269" target="_blank">arXiv</a>
+                    <a href="https://sites.google.com/view/icra26-workshop-medical-robot/home" target="_blank">Workshop</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub-entry">
+            <div class="pub-num">2.</div>
+            <div class="pub-body">
+                <div class="pub-title">Transferable Deep Reinforcement Learning with Edge-Contour-Depth Fusion for Autonomous Wireless Capsule Endoscopy Navigation</div>
+                <div class="pub-venue">Advanced Science &nbsp;<span class="tag-review">[Under Review]</span></div>
+                <div class="pub-links">
+                    <a href="papers/Manuscript_AS.pdf" target="_blank">Manuscript</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub-entry">
+            <div class="pub-num">3.</div>
+            <div class="pub-body">
+                <div class="pub-title">Percolation Critical Probability of Aperiodic Smith Hat Tile(1, √3)</div>
+                <div class="pub-venue">Physical Review E &nbsp;<span class="tag-review">[Under Review]</span></div>
+                <div class="pub-links">
+                    <a href="https://arxiv.org/abs/2604.21165" target="_blank">arXiv</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub-entry">
+            <div class="pub-num">4.</div>
+            <div class="pub-body">
+                <div class="pub-title">Magnetic Trap Control in Electromagnetic Actuation: 3D Limits and 2D Realization</div>
+                <div class="pub-venue">ICBIR 2025</div>
+                <div class="pub-links">
+                    <a href="https://www.sciencedirect.com/science/article/pii/S187705092503491X" target="_blank">Published</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub-entry">
+            <div class="pub-num">5.</div>
+            <div class="pub-body">
+                <div class="pub-title">Physics-Informed Neural Networks for Quasi-Static Tip Position Control of Magnetic Catheters</div>
+                <div class="pub-venue">ICBIR 2025</div>
+                <div class="pub-links">
+                    <a href="https://www.sciencedirect.com/science/article/pii/S1877050925034945" target="_blank">Published</a>
+                </div>
             </div>
         </div>
     </div>
-    
-    <script src="proto.js"></script>
+
+    <hr class="rule">
+
+    <!-- Education -->
+    <div class="section">
+        <h2>Education</h2>
+        <ul class="plain-list">
+            <li><strong>2025–2029</strong> &nbsp;Ph.D. Candidate, <a href="https://www.unsw.edu.au" target="_blank">University of New South Wales</a><br>
+            <li style="margin-top:8px;"><strong>2023–2025</strong> &nbsp;Master of Information Technology, <a href="https://www.unsw.edu.au" target="_blank">University of New South Wales</a></li>
+            <li style="margin-top:8px;"><strong>2019–2023</strong> &nbsp;Bachelor of Engineering, <a href="https://www.hdu.edu.cn" target="_blank">Hangzhou Dianzi University</a></li>
+        </ul>
+    </div>
+
+    <hr class="rule">
+
+    <!-- Honors & Awards -->
+    <div class="section">
+        <h2>Honors &amp; Awards</h2>
+        <ul class="plain-list">
+            <li><strong>UNSW TFS Scholarship</strong> — University of New South Wales, 2025</li>
+            <li><strong>2nd Place, AWS Hackathon</strong> — 2024</li>
+            <li><strong>Outstanding Undergraduate Student Award</strong> — Hangzhou Dianzi University, 2023</li>
+            <li><strong>Outstanding Undergraduate Thesis (Full Marks)</strong> — Hangzhou Dianzi University, 2023</li>
+            <li><strong>Undergraduate Scholarship ×7</strong> — Hangzhou Dianzi University, 2020–2023</li>
+        </ul>
+    </div>
+
+    <hr class="rule">
+    <div class="footer">Last updated May 2026</div>
+
 </body>
 </html>
