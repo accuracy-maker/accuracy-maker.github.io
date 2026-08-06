@@ -2,11 +2,11 @@
 title: Special Orthogonal Group
 date: August 6, 2026
 read: 20 min read
-excerpt: Robotic Configuration Space
+excerpt: Robotic Configuration Space I
 ---
 
 ## Introduction
-Recently, my research is mainly about study non-Euclidean space in robotics. There are two sperate spaces in robotic manipulators: Configuration space $\mathcal{C}$ and Workspace $\mathcal{W}$. Fortunately, they are all groups which can be studied from mathematical prespectives. There are many important groups such as $SO(3)$ and $SE(3)$ in robotic motion planning. That introduced me diving into this group theory the whole year. So I decided to write some personal understanding and thoughts down about this subject.
+Recently, my research is mainly about study non-Euclidean space in robotics. There are two sperate spaces in robotic manipulators: Configuration space $\mathcal{C}$ and Workspace $\mathcal{W}$. Fortunately, they are all groups which can be studied from mathematical prespectives. There are many important groups such as $SO(3)$ and $SE(3)$ in robotic motion planning. That introduced me diving into this group theory the whole year. So I decided to write some personal understanding and thoughts about this subject.
 
 ## Matrix Group
 In rigid robotics, what we really studying is a set of coordinate transformations. We can provide a coordinate to anything we are interested and studying how one coordinate can be transformed to another coordinate. Formally, let's consider the set of transformations as a group in addition to a topological space. 
@@ -82,10 +82,34 @@ which is a circle $\mathbb{S}^1$. With contraints of equation (2) and (4), the v
 $$
 x = a, \quad y = \frac{b-c}{2}, \quad z=\frac{b+c}{2}  
 $$
-where $d = \cos{\theta}$ in circle A and $d = -\cos{\theta}$ in circle B. Below is an visualisation of this manifold in $\mathbb{R}^3$ space. We can think about $d$ as the timeline. That means when two points on the sphere overlap, the time is different. When the time is same, two points are not overlapped, which means they are never overlapped.
+where $d = \cos{\theta}$ in circle A and $d = -\cos{\theta}$ in circle B. Below is an visualisation of this manifold in $\mathbb{R}^3$ space. We can think about $d$ as the timeline. That means when two points on the sphere overlap, the time is different. When the time is same, two points are not overlapped, which means they are never overlapped. 
 
-
+Final step, we add one more constraint that: $\text{det} A = ad - bc = 1$ to obtain $SO(2)$, that is the set of all 2-D rotation matrices (We throw away one circle with this constraint). Therefore, $SO(2)$ is homomorphic to $\mathbb{S}^1$ which can be parameterised by polar coordinates,
+$$
+R =
+\begin{pmatrix}
+ \cos(\theta) & -\sin(\theta) \\
+ \sin(\theta) & \cos(\theta)
+\end{pmatrix}
+$$
 :::
+
+Since I have introduced $SO(2)$ by accident in the example. A definiton of special orthogonal group $SO(n)$ is given by
+
+:::definition special orthogonal group
+A set of matrix $A \in GL(n) \quad AA^T = I \quad \text{det}A = 1$.
+:::
+we can easily obtain the inequality such that
+$$
+SO(N) \leq O(N) \leq GL(N)
+$$
+where $\leq$ means "subgroup".
+
+## Implication
+When I first went into the robotic field, I didn't realise that how close robotic kinematics to geometry and algebraic geometry. In last century, many mathematicians studied kinematics and many kinematists are mathematicians. Back to this topic, rotation is very important in robots like many robotic components just can rotate (revolute manipulators). Understanding basic group theory is essential to learning robotic theory (However, many people argue that robotics doesn't have its own theory).
+
+## Reference
+LaValle, S.M., 2006. Planning algorithms (Vol. 1). Cambridge, UK: Cambridge university press. (This blog is almost my learning notes of Chapter 4 in this book)
 
 :::embed o2_two_circles.html
 Drag to rotate. The two components of $O(2)$ never touch.

@@ -48,7 +48,8 @@
 
         var slugs;
         try {
-            var res = await fetch('posts/posts.json');
+            // no-cache: always revalidate, so edits show up on a plain reload
+            var res = await fetch('posts/posts.json', { cache: 'no-cache' });
             if (!res.ok) throw new Error(res.status);
             slugs = await res.json();
         } catch (e) {
@@ -59,7 +60,7 @@
 
         var posts = await Promise.all(slugs.map(async function (slug) {
             try {
-                var r = await fetch('posts/' + slug + '.md');
+                var r = await fetch('posts/' + slug + '.md', { cache: 'no-cache' });
                 if (!r.ok) throw new Error(r.status);
                 var meta = MD.splitFrontMatter(await r.text()).meta;
                 return { slug: slug, meta: meta };

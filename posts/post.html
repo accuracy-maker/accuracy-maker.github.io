@@ -109,7 +109,9 @@
 
         var raw;
         try {
-            var res = await fetch(slug + '.md');
+            // no-cache: always revalidate, so edits to the .md show up on
+            // a plain reload instead of being served from the browser cache
+            var res = await fetch(slug + '.md', { cache: 'no-cache' });
             if (!res.ok) throw new Error(res.status);
             raw = await res.text();
         } catch (e) {
