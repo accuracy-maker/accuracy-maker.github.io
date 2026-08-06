@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Haitao Gao</title>
+    <!-- bump ?v= whenever blog.css changes, to bust the browser cache -->
+    <link rel="stylesheet" href="../blog.css?v=3">
+
+    <!-- MathJax for LaTeX math -->
+    <script>
+        // resolves once MathJax is loaded and ready; the post is rendered
+        // asynchronously, so we typeset it ourselves afterwards
+        window.mathJaxReady = new Promise(function (resolve) {
+            window.MathJax = {
+                tex: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                    processEscapes: true,
+                    tags: 'ams'
+                },
+                options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+                startup: {
+                    typeset: false,
+                    pageReady: function () {
+                        return MathJax.startup.defaultPageReady().then(resolve);
+                    }
+                }
+            };
+        });
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Markdown parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+
+    <!-- Prism for code highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" data-manual></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <a href="../index.html">home</a> /
+        <a href="../research.html">research</a> /
+        <a href="../teaching.html">teaching</a> /
+        <a href="../blog.html">blog</a>
+    </div>
+    <hr class="rule">
+
+    <article class="post">
+        <h1 id="post-title">Loading…</h1>
+        <div class="post-meta" id="post-meta"></div>
+        <div id="post-body"></div>
+        <a class="back-link" href="../blog.html">← Back to all posts</a>
+    </article>
+
+    <hr class="rule">
+    <div class="footer" id="footer"></div>
+
+    <script src="markdown.js"></script>
+    <script>
+    // grow each :::embed iframe to the height of the page inside it
+    // (same origin, so we can measure it; a height= in the block opts out)
+    function fitEmbeds(root) {
+        root.querySelectorAll('iframe.embed-frame').forEach(function (frame) {
+            if (frame.dataset.fixedHeight) return;
+
+            function fit() {
+                try {
+                    var doc = frame.contentDocument;
+                    if (!doc || !doc.body) return;
+                    var h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
+                    if (h) frame.style.height = h + 'px';
+                } catch (e) {
+                    /* different origin — keep the default height */
+                }
+            }
+
+            frame.addEventListener('load', function () {
+                fit();
+                // the embedded page may resize itself after it runs
+                try {
+                    if (window.ResizeObserver && frame.contentDocument) {
+                        new ResizeObserver(fit).observe(frame.contentDocument.documentElement);
+                    }
+                } catch (e) {}
+            });
+            fit();
+        });
+    }
+
+    (async function () {
+        var slug = new URLSearchParams(location.search).get('p') || '';
+        var titleEl = document.getElementById('post-title');
+        var metaEl  = document.getElementById('post-meta');
+        var bodyEl  = document.getElementById('post-body');
+
+        if (!/^[A-Za-z0-9._-]+$/.test(slug)) {
+            titleEl.textContent = 'Post not found';
+            bodyEl.innerHTML = '<p>No post was specified. Go back to the ' +
+                               '<a href="../blog.html">blog index</a>.</p>';
+            return;
+        }
+
+        var raw;
+        try {
+            var res = await fetch(slug + '.md');
+            if (!res.ok) throw new Error(res.status);
+            raw = await res.text();
+        } catch (e) {
+            titleEl.textContent = 'Post not found';
+            bodyEl.innerHTML = '<p>Could not load <code>' + slug + '.md</code>. ' +
+                'If you are opening this file directly from disk, run a local server ' +
+                'instead (<code>python3 -m http.server</code>).</p>';
+            return;
+        }
+
+        var post = MD.parsePost(raw);
+
+        document.title = (post.meta.title || slug) + ' - Haitao Gao';
+        titleEl.textContent = post.meta.title || slug;
+        metaEl.textContent  = MD.formatMeta(post.meta);
+        if (!metaEl.textContent) metaEl.style.display = 'none';
+
+        bodyEl.innerHTML = post.html;
+
+        if (window.Prism) Prism.highlightAllUnder(bodyEl);
+        fitEmbeds(bodyEl);
+
+        document.getElementById('footer').textContent =
+            post.meta.date ? 'Last updated ' + post.meta.date : '';
+
+        await window.mathJaxReady;
+        await MathJax.typesetPromise([bodyEl]);
+    })();
+    </script>
+
+</body>
+</html>

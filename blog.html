@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Haitao Gao</title>
-    <link rel="stylesheet" href="blog.css">
+    <!-- bump ?v= whenever blog.css changes, to bust the browser cache -->
+    <link rel="stylesheet" href="blog.css?v=3">
 </head>
 <body>
 
@@ -21,28 +22,81 @@
     <p class="page-subtitle">Notes on mathematics, algorithms, and robotics.</p>
 
     <!-- ══════════════════════════════════════════════════════════════
-         BLOG INDEX
-         To add a post: create posts/<slug>.html (copy an existing one),
-         then add a <li> entry below pointing to it.
+         BLOG INDEX  —  built automatically from the .md files.
+
+         To add a post:
+           1. copy posts/_template.md to posts/<slug>.md
+           2. fill in the title / date / excerpt at the top, write the body
+           3. add "<slug>" to the top of posts/posts.json
+
+         Nothing else to edit — the title, date and excerpt below come
+         straight from each post's front matter.
     ═══════════════════════════════════════════════════════════════ -->
-    <ul class="post-list">
-
-        <li>
-            <a class="post-link" href="posts/score-function-reparameterization.html">
-                The Score Function and the Reparameterization Trick
-            </a>
-            <div class="post-date">July 17, 2026 · 6 min read</div>
-            <div class="post-excerpt">
-                Two ways to differentiate through an expectation over a
-                parameter-dependent distribution — REINFORCE vs. the
-                reparameterization trick — and when to prefer each.
-            </div>
-        </li>
-
-    </ul>
+    <ul class="post-list" id="post-list"></ul>
 
     <hr class="rule">
-    <div class="footer">Last updated July 2026</div>
+    <div class="footer">Last updated August 2026</div>
+
+    <script src="posts/markdown.js"></script>
+    <script>
+    (async function () {
+        var list = document.getElementById('post-list');
+
+        function fail(msg) {
+            list.innerHTML = '<li>' + msg + '</li>';
+        }
+
+        var slugs;
+        try {
+            var res = await fetch('posts/posts.json');
+            if (!res.ok) throw new Error(res.status);
+            slugs = await res.json();
+        } catch (e) {
+            return fail('Could not load <code>posts/posts.json</code>. If you are ' +
+                        'opening this file directly from disk, run a local server ' +
+                        'instead (<code>python3 -m http.server</code>).');
+        }
+
+        var posts = await Promise.all(slugs.map(async function (slug) {
+            try {
+                var r = await fetch('posts/' + slug + '.md');
+                if (!r.ok) throw new Error(r.status);
+                var meta = MD.splitFrontMatter(await r.text()).meta;
+                return { slug: slug, meta: meta };
+            } catch (e) {
+                return null;
+            }
+        }));
+
+        var html = posts.filter(Boolean).map(function (p) {
+            var li = document.createElement('li');
+
+            var a = document.createElement('a');
+            a.className = 'post-link';
+            a.href = 'posts/post.html?p=' + encodeURIComponent(p.slug);
+            a.textContent = p.meta.title || p.slug;
+            li.appendChild(a);
+
+            var meta = MD.formatMeta(p.meta);
+            if (meta) {
+                var d = document.createElement('div');
+                d.className = 'post-date';
+                d.textContent = meta;
+                li.appendChild(d);
+            }
+            if (p.meta.excerpt) {
+                var e = document.createElement('div');
+                e.className = 'post-excerpt';
+                e.textContent = p.meta.excerpt;
+                li.appendChild(e);
+            }
+            return li;
+        });
+
+        if (!html.length) return fail('No posts yet.');
+        html.forEach(function (li) { list.appendChild(li); });
+    })();
+    </script>
 
 </body>
 </html>

@@ -124,6 +124,84 @@ p > code, li > code {
 /* ── display math scroll on mobile ── */
 mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
 
+/* ── embedded interactive pages (:::embed … :::) ── */
+.embed { margin: 20px 0; }
+
+.embed-frame {
+    display: block;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.embed figcaption {
+    font-size: 13px;
+    color: #555;
+    margin-top: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.embed figcaption p { margin-bottom: 4px; }
+.embed-open { font-size: 12px; }
+
+/* ── theorem-style blocks (:::definition … :::) ── */
+.callout {
+    margin: 16px 0;
+    padding: 10px 14px;
+    border-left: 3px solid #999;
+    background: #fafafa;
+}
+.callout p { margin-bottom: 8px; }
+.callout > *:last-child { margin-bottom: 0; }
+
+.callout-label { font-weight: bold; }
+.callout-name  { font-weight: normal; font-style: italic; }
+
+/* light blue — definitions */
+.callout-definition  { border-left-color: #4a90d9; background: #e8f2fc; }
+.callout-definition .callout-label { color: #1a5c9c; }
+
+/* light yellow — theorem family (statements set in italics, as in a paper) */
+.callout-theorem,
+.callout-lemma,
+.callout-proposition,
+.callout-corollary,
+.callout-claim       { border-left-color: #e0b23c; background: #fdf6dd; }
+.callout-theorem .callout-label,
+.callout-lemma .callout-label,
+.callout-proposition .callout-label,
+.callout-corollary .callout-label,
+.callout-claim .callout-label { color: #8a6412; }
+.callout-theorem p,
+.callout-lemma p,
+.callout-proposition p,
+.callout-corollary p,
+.callout-claim p     { font-style: italic; }
+
+/* light green — examples */
+.callout-example,
+.callout-exercise    { border-left-color: #5aa46a; background: #ebf7ed; }
+.callout-example .callout-label,
+.callout-exercise .callout-label { color: #2f6b3c; }
+
+/* light purple — asides */
+.callout-remark,
+.callout-note        { border-left-color: #9b8ac4; background: #f2effa; }
+.callout-remark .callout-label,
+.callout-note .callout-label { color: #5c4b8a; }
+
+/* a proof is set plain, closed with a tombstone */
+.callout-proof {
+    border-left: none;
+    background: none;
+    padding: 0;
+    margin: 14px 0;
+}
+.callout-proof .callout-label { font-weight: normal; font-style: italic; }
+.callout-qed { float: right; }
+.callout::after { content: ""; display: block; clear: both; }
+
 blockquote {
     border-left: 3px solid #ccc;
     padding-left: 14px;
